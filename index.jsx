@@ -1,0 +1,331 @@
+import React, { useState, useEffect } from 'react';
+import {
+  ChevronUpIcon,
+  ChatBubbleBottomCenterTextIcon,
+  GlobeAltIcon, // For Multimodal
+  MagnifyingGlassCircleIcon, // For Deep Analysis
+  SparklesIcon, // For Candidate Experience
+  ClipboardDocumentCheckIcon, // For HR Dashboard
+  ScaleIcon, // For Scalability
+  LightBulbIcon, // For Innovation
+  WalletIcon, // For Cost-Efficiency
+  ShieldCheckIcon, // For Security
+} from '@heroicons/react/24/outline';
+
+const HomePage = () => {
+  const [scrolled, setScrolled] = useState(false);
+  const [showScrollToTop, setShowScrollToTop] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const isScrolled = window.scrollY > 0;
+      setScrolled(isScrolled);
+      setShowScrollToTop(window.scrollY > 300); // Show after scrolling 300px
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
+
+  const handleChatAssistantClick = () => {
+    alert('Chat Assistant coming soon! For now, please contact us.');
+    // In a real app, this would open a chat widget or a contact form.
+  };
+
+  return (
+    <div className="font-sans antialiased bg-white text-gray-900">
+      {/* Header */}
+      <header className={`sticky top-0 z-50 transition-all duration-300 ${scrolled ? 'bg-white shadow-md py-3' : 'bg-white bg-opacity-95 py-4'}`}>
+        <div className="container mx-auto px-6 flex justify-between items-center">
+          <a href="/" className="text-3xl font-extrabold">
+            <span className="text-neoBlue">Neo</span>
+            <span className="text-gray-900">Recruiter</span>
+          </a>
+          <nav>
+            <ul className="flex space-x-6">
+              <li><a href="#features" className="text-gray-700 hover:text-neoBlue transition-colors duration-300">Features</a></li>
+              <li><a href="#pricing" className="text-gray-700 hover:text-neoBlue transition-colors duration-300">Pricing</a></li>
+              <li><a href="#documentation" className="text-gray-700 hover:text-neoBlue transition-colors duration-300">Documentation</a></li>
+              <li><a href="#login" className="text-gray-700 hover:text-neoBlue transition-colors duration-300">Login</a></li>
+              <li>
+                <a href="#signup" className="px-4 py-2 bg-neoBlue text-white rounded-full hover:bg-blue-700 transition-colors duration-300 text-sm font-semibold">
+                  Sign Up
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+
+      {/* Hero Section */}
+      <section className="relative flex items-center justify-center min-h-[calc(100vh-80px)] text-center px-6 pb-20"> {/* Added pb-20 for space below */}
+        <div className="max-w-4xl mx-auto animate-fade-in-up">
+          <h1 className="text-5xl md:text-6xl font-extrabold leading-tight mb-6">
+            Streamline Your Hiring. <br className="hidden md:block"/> Discover Top Talent. <span className="text-neoBlue">Faster.</span>
+          </h1>
+          <p className="text-xl text-gray-600 mb-10 max-w-2xl mx-auto">
+            Our Next-Gen Multimodal AI Interview Bot uses deep analysis to help you make unbiased, data-driven hiring decisions.
+          </p>
+          <div className="relative flex items-center justify-center w-full max-w-xl mx-auto bg-gray-50 rounded-full shadow-lg p-2 animate-fade-in-up delay-200">
+            <input
+              type="text"
+              placeholder="Type a job title (e.g., 'Software Engineer') to get started..."
+              className="flex-grow py-3 px-6 bg-transparent outline-none text-lg text-gray-800 placeholder-gray-500"
+            />
+            <button className="flex-shrink-0 bg-neoBlue text-white p-3 rounded-full hover:bg-blue-700 transition-colors duration-300">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-6 h-6">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* Floating Action Buttons */}
+      {showScrollToTop && (
+        <button
+          onClick={scrollToTop}
+          className="fixed bottom-20 right-6 bg-gray-800 text-white p-3 rounded-full shadow-lg hover:bg-gray-700 transition-all duration-300 z-40 animate-fade-in"
+          title="Scroll to Top"
+        >
+          <ChevronUpIcon className="h-6 w-6" />
+        </button>
+      )}
+      <button
+        onClick={handleChatAssistantClick}
+        className="fixed bottom-6 right-6 bg-neoBlue text-white p-3 rounded-full shadow-lg hover:bg-blue-700 transition-colors duration-300 z-40 animate-slide-in-right"
+        title="Chat with Assistant"
+      >
+        <ChatBubbleBottomCenterTextIcon className="h-6 w-6" />
+      </button>
+
+      {/* About Us / Video Section */}
+      <section className="py-20 bg-gray-50" id="about">
+        <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          {/* Left: Video */}
+          <div className="relative aspect-video w-full rounded-lg shadow-xl overflow-hidden animate-fade-in-up">
+            <iframe
+              src="https://www.youtube.com/embed/dQw4w9WgXcQ?si=YOUR_YOUTUBE_VIDEO_ID" // Replace YOUR_YOUTUBE_VIDEO_ID with an actual ID
+              title="NeoRecruiter Explainer Video"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen
+              className="absolute top-0 left-0 w-full h-full"
+            ></iframe>
+          </div>
+          {/* Right: About Us Text */}
+          <div className="text-left animate-fade-in-up delay-200">
+            <p className="text-sm font-semibold text-neoBlue uppercase mb-3">About Us</p>
+            <h2 className="text-4xl font-bold mb-6">
+              Redefining Recruitment for the Modern Era
+            </h2>
+            <p className="text-lg text-gray-700 mb-4">
+              At NeoRecruiter, we believe in a future where hiring is efficient, unbiased, and candidate-centric. Our AI-powered platform goes beyond traditional methods, offering deep insights and a seamless experience for both recruiters and applicants.
+            </p>
+            <p className="text-lg text-gray-700">
+              We leverage cutting-edge AI and multimodal interfaces to ensure you find the best talent, faster, while delivering a positive and fair experience to every candidate.
+            </p>
+            <a href="#contact" className="inline-flex items-center mt-6 px-6 py-3 bg-neoBlue text-white rounded-full hover:bg-blue-700 transition-colors duration-300 font-semibold">
+              Learn More About Our Mission
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5 ml-2">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </section>
+
+
+      {/* Expanded Features Section */}
+      <section id="features" className="py-20 bg-white">
+        <div className="container mx-auto px-6 text-center">
+          <h2 className="text-4xl font-bold mb-14 animate-fade-in-up">
+            Unleashing the Power of Smart Hiring
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+            {/* Feature 1 */}
+            <div className="bg-gray-50 p-8 rounded-lg shadow-md border-t-4 border-neoBlue hover:shadow-xl transition-shadow duration-300 group animate-fade-in-up delay-100">
+              <div className="text-5xl text-neoBlue mb-4 mx-auto w-fit group-hover:animate-pop-in">
+                <GlobeAltIcon className="h-16 w-16 mx-auto" />
+              </div>
+              <h3 className="text-2xl font-bold mb-3">Multimodal Interface</h3>
+              <p className="text-gray-700">Engage candidates with a rich experience combining on-screen text, vocal prompts, and flexible response options (voice or typing). Supports diverse question formats like coding challenges, MCQs, and case studies.</p>
+            </div>
+            {/* Feature 2 */}
+            <div className="bg-gray-50 p-8 rounded-lg shadow-md border-t-4 border-green-500 hover:shadow-xl transition-shadow duration-300 group animate-fade-in-up delay-200">
+              <div className="text-5xl text-green-600 mb-4 mx-auto w-fit group-hover:animate-pop-in">
+                <MagnifyingGlassCircleIcon className="h-16 w-16 mx-auto" />
+              </div>
+              <h3 className="text-2xl font-bold mb-3">AI-Driven Deep Analysis</h3>
+              <p className="text-gray-700">Harness the power of Hugging Face/OpenAI APIs for comprehensive sentiment, relevance, fluency, and keyword analysis. Get automatic scoring, unbiased ranking, and detailed feedback reports.</p>
+            </div>
+            {/* Feature 3 */}
+            <div className="bg-gray-50 p-8 rounded-lg shadow-md border-t-4 border-purple-500 hover:shadow-xl transition-shadow duration-300 group animate-fade-in-up delay-300">
+              <div className="text-5xl text-purple-600 mb-4 mx-auto w-fit group-hover:animate-pop-in">
+                <SparklesIcon className="h-16 w-16 mx-auto" />
+              </div>
+              <h3 className="text-2xl font-bold mb-3">Superior Candidate Experience</h3>
+              <p className="text-gray-700">Provide live, constructive feedback during interviews ("Please elaborate," "Good answer, next question"), multi-language support (Hindi/English/Regional), and optional face/body language analysis.</p>
+            </div>
+            {/* Feature 4 */}
+            <div className="bg-gray-50 p-8 rounded-lg shadow-md border-t-4 border-yellow-500 hover:shadow-xl transition-shadow duration-300 group animate-fade-in-up delay-400">
+              <div className="text-5xl text-yellow-600 mb-4 mx-auto w-fit group-hover:animate-pop-in">
+                <ClipboardDocumentCheckIcon className="h-16 w-16 mx-auto" />
+              </div>
+              <h3 className="text-2xl font-bold mb-3">Comprehensive HR Dashboard</h3>
+              <p className="text-gray-700">Access all candidate reports, rankings, and interview logs. Customize question sets, create interview templates, export results, and integrate seamlessly with ATS, Google Sheets, or Notion.</p>
+            </div>
+            {/* Feature 5 */}
+            <div className="bg-gray-50 p-8 rounded-lg shadow-md border-t-4 border-pink-500 hover:shadow-xl transition-shadow duration-300 group animate-fade-in-up delay-500">
+              <div className="text-5xl text-pink-600 mb-4 mx-auto w-fit group-hover:animate-pop-in">
+                <ScaleIcon className="h-16 w-16 mx-auto" />
+              </div>
+              <h3 className="text-2xl font-bold mb-3">Scalability & Efficiency</h3>
+              <p className="text-gray-700">Conduct bulk campaigns with personalized invites, unique interview links via email/SMS/WhatsApp. Designed for high volume, ensuring efficiency without compromising quality.</p>
+            </div>
+            {/* Feature 6 */}
+            <div className="bg-gray-50 p-8 rounded-lg shadow-md border-t-4 border-cyan-500 hover:shadow-xl transition-shadow duration-300 group animate-fade-in-up delay-600">
+              <div className="text-5xl text-cyan-600 mb-4 mx-auto w-fit group-hover:animate-pop-in">
+                <ShieldCheckIcon className="h-16 w-16 mx-auto" />
+              </div>
+              <h3 className="text-2xl font-bold mb-3">Robust Security & Privacy</h3>
+              <p className="text-gray-700">Candidate data encryption and full GDPR compliance are at our core. We prioritize privacy, ensuring candidate consent is obtained before any data recording or processing.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Pricing Section */}
+      <section id="pricing" className="py-20 bg-gray-50">
+        <div className="container mx-auto px-6 text-center">
+          <h2 className="text-4xl font-bold mb-12 animate-fade-in-up">
+            Flexible Plans for Every Need
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Basic Plan */}
+            <div className="bg-white p-8 rounded-lg shadow-lg border-t-4 border-gray-200 animate-fade-in-up delay-100">
+              <h3 className="text-2xl font-bold mb-4">Basic</h3>
+              <p className="text-5xl font-extrabold mb-4">$49<span className="text-xl font-normal text-gray-600">/month</span></p>
+              <ul className="text-gray-700 text-left mb-6 space-y-2">
+                <li>✔️ Up to 50 interviews/month</li>
+                <li>✔️ Basic AI analysis</li>
+                <li>✔️ Standard HR dashboard</li>
+                <li>✔️ Email support</li>
+              </ul>
+              <button className="w-full py-3 bg-gray-800 text-white rounded-full hover:bg-gray-700 transition-colors duration-300 font-semibold">
+                Get Started
+              </button>
+            </div>
+
+            {/* Pro Plan */}
+            <div className="bg-neoBlue text-white p-8 rounded-lg shadow-xl border-t-4 border-blue-300 transform scale-105 animate-fade-in-up delay-200">
+              <p className="text-sm font-semibold mb-2">Most Popular</p>
+              <h3 className="text-2xl font-bold mb-4">Pro</h3>
+              <p className="text-5xl font-extrabold mb-4">$149<span className="text-xl font-normal text-blue-200">/month</span></p>
+              <ul className="text-blue-100 text-left mb-6 space-y-2">
+                <li>✔️ Up to 300 interviews/month</li>
+                <li>✔️ Deep AI analysis</li>
+                <li>✔️ Advanced HR dashboard</li>
+                <li>✔️ ATS integration</li>
+                <li>✔️ Priority support</li>
+              </ul>
+              <button className="w-full py-3 bg-white text-neoBlue rounded-full hover:bg-gray-200 transition-colors duration-300 font-semibold">
+                Choose Pro
+              </button>
+            </div>
+
+            {/* Enterprise Plan */}
+            <div className="bg-white p-8 rounded-lg shadow-lg border-t-4 border-gray-200 animate-fade-in-up delay-300">
+              <h3 className="text-2xl font-bold mb-4">Enterprise</h3>
+              <p className="text-5xl font-extrabold mb-4">Custom</p>
+              <ul className="text-gray-700 text-left mb-6 space-y-2">
+                <li>✔️ Unlimited interviews</li>
+                <li>✔️ Custom AI models</li>
+                <li>✔️ Dedicated account manager</li>
+                <li>✔️ On-premise deployment options</li>
+                <li>✔️ 24/7 Premium support</li>
+              </ul>
+              <button className="w-full py-3 bg-gray-800 text-white rounded-full hover:bg-gray-700 transition-colors duration-300 font-semibold">
+                Contact Sales
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Call to Action Section */}
+      <section className="bg-neoBlue py-16 md:py-20 text-center">
+        <div className="container mx-auto px-6">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+            Ready to Transform Your Recruitment Process?
+          </h2>
+          <p className="text-lg text-blue-100 mb-10 max-w-2xl mx-auto">
+            Experience the future of hiring with intelligent, unbiased, and scalable AI interviews.
+          </p>
+          <button className="bg-white text-neoBlue hover:bg-gray-100 font-bold py-4 px-10 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1 text-xl">
+            Get Started Today
+          </button>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-gray-900 text-gray-300 py-12">
+        <div className="container mx-auto px-6 text-center md:text-left">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div>
+              <h3 className="text-2xl font-extrabold text-white mb-4">
+                <span className="text-neoBlue">Neo</span>Recruiter
+              </h3>
+              <p className="text-gray-400 text-sm">
+                Intelligent AI solutions for modern recruitment.
+                Streamlining hiring, empowering fair decisions.
+              </p>
+            </div>
+
+            <div>
+              <h4 className="text-lg font-semibold text-white mb-4">Product</h4>
+              <ul>
+                <li className="mb-2"><a href="#features" className="hover:text-neoBlue transition-colors duration-300">Features</a></li>
+                <li className="mb-2"><a href="#pricing" className="hover:text-neoBlue transition-colors duration-300">Pricing</a></li>
+                <li className="mb-2"><a href="#demo" className="hover:text-neoBlue transition-colors duration-300">Demo</a></li>
+              </ul>
+            </div>
+
+            <div>
+              <h4 className="text-lg font-semibold text-white mb-4">Company</h4>
+              <ul>
+                <li className="mb-2"><a href="#about" className="hover:text-neoBlue transition-colors duration-300">About Us</a></li>
+                <li className="mb-2"><a href="#careers" className="hover:text-neoBlue transition-colors duration-300">Careers</a></li>
+                <li className="mb-2"><a href="#contact" className="hover:text-neoBlue transition-colors duration-300">Contact</a></li>
+              </ul>
+            </div>
+
+            <div>
+              <h4 className="text-lg font-semibold text-white mb-4">Legal</h4>
+              <ul>
+                <li className="mb-2"><a href="#privacy" className="hover:text-neoBlue transition-colors duration-300">Privacy Policy</a></li>
+                <li className="mb-2"><a href="#terms" className="hover:text-neoBlue transition-colors duration-300">Terms of Service</a></li>
+                <li className="mb-2"><a href="#cookies" className="hover:text-neoBlue transition-colors duration-300">Cookie Policy</a></li>
+              </ul>
+            </div>
+          </div>
+          <div className="border-t border-gray-800 mt-10 pt-8 text-center">
+            <p className="text-gray-500 text-sm">&copy; {new Date().getFullYear()} NeoRecruiter. All rights reserved.</p>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+};
+
+export default HomePage;
